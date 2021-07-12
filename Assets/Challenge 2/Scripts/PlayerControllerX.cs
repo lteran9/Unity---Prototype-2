@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerX : MonoBehaviour
+namespace Prototype2.Challenge2
 {
-   public GameObject dogPrefab;
-
-   private float lastKeyPress;
-
-   void Start()
+   public class PlayerControllerX : MonoBehaviour
    {
+      float lastKeyPress;
+
+      [SerializeField] GameObject dogPrefab;
+
       //
-   }
-
-   // Update is called once per frame
-   void Update()
-   {
-      // On spacebar press, send dog
-      if (Input.GetKeyDown(KeyCode.Space))
+      void Start()
       {
-         if (lastKeyPress + 1 <= Time.time)
+
+      }
+
+      // Update is called once per frame
+      void Update()
+      {
+         // On spacebar press, send dog
+         if (Input.GetKeyDown(KeyCode.Space))
          {
-            lastKeyPress = Time.time;
-            Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            if (lastKeyPress + 1 <= Time.time)
+            {
+               lastKeyPress = Time.time;
+               Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            }
          }
       }
    }

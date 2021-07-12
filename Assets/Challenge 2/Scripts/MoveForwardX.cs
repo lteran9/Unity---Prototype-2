@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveForwardX : MonoBehaviour
+namespace Prototype2.Challenge2
 {
-    public float speed;
+   public class MoveForwardX : MonoBehaviour
+   {
+      [SerializeField] float speed = 5.0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+      // Update is called once per frame
+      void Update()
+      {
+         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+      }
+   }
 }
