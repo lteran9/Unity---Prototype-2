@@ -2,32 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Prototype2
-{
-   public class SpawnManager : MonoBehaviour
-   {
-      float spawnRangeX = 15;
-      float spawnPosZ = 20;
+namespace Prototype2 {
+   public class SpawnManager : MonoBehaviour {
+      private float spawnRangeX = 15;
+      private float spawnPosZ = 20;
 
-      [SerializeField] GameObject[] animalPrefabs;
+      [SerializeField] private GameObject[] animalPrefabs;
 
       // Start is called before the first frame update
-      void Start()
-      {
+      private void Start() {
          InvokeRepeating("SpawnRandomAnimal", 2, 1.5f);
       }
 
       // Update is called once per frame
-      void Update()
-      {
-         if (Input.GetKeyDown(KeyCode.S))
-         {
+      private void Update() {
+         if (Input.GetKeyDown(KeyCode.S)) {
             SpawnRandomAnimal();
          }
       }
 
-      void SpawnRandomAnimal()
-      {
+      private void SpawnRandomAnimal() {
          int animalIndex = Random.Range(0, animalPrefabs.Length);
          var spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
 

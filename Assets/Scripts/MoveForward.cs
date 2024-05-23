@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Prototype2
-{
-   public class MoveForward : MonoBehaviour
-   {
-      float speed = 40.0f;
+namespace Prototype2 {
+   public class MoveForward : MonoBehaviour {
+      [SerializeField] private float speed = 20.0f;
 
       // Start is called before the first frame update
-      void Start()
-      {
+      private void Start() {
 
       }
 
       // Update is called once per frame
-      void Update()
-      {
+      private void Update() {
          transform.Translate(Vector3.forward * Time.deltaTime * speed);
       }
    }
