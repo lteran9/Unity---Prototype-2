@@ -15,8 +15,18 @@ namespace Prototype2 {
       }
 
       private void OnTriggerEnter(Collider other) {
-         Destroy(gameObject);
-         Destroy(other.gameObject);
+         if (tag == "Player") {
+            if (other.CompareTag("Pizza")) {
+               return;
+            }
+         } else if (tag == "Pizza") {
+            if (other.CompareTag("Player")) {
+               return;
+            }
+         } else {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+         }
       }
    }
 }
