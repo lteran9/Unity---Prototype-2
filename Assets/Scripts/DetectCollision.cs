@@ -1,35 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Prototype2.Events.ScriptableObjects;
 using UnityEngine;
 
 namespace Prototype2 {
    public class DetectCollision : MonoBehaviour {
-      // Start is called before the first frame update
-      private void Start() {
-
-      }
-
-      // Update is called once per frame
-      private void Update() {
-
-      }
+      [Header("Broadcasts on")]
+      [SerializeField] private VoidEventChannelSO _onGameOver = default;
 
       /// <summary>
       /// Detects collision between player and animals or pizza and animals.
       /// </summary>
       /// <param name="other"></param>
       private void OnTriggerEnter(Collider other) {
-         if (tag == "Player") {
-            if (other.CompareTag("Pizza")) {
-               return;
-            }
-         } else if (tag == "Pizza") {
-            if (other.CompareTag("Player")) {
-               return;
-            }
+         if (tag == "Pizza" && other.CompareTag("Player")) {
+            return;
          } else {
             Destroy(gameObject);
             Destroy(other.gameObject);
+            if (other.CompareTag("Player")) {
+               _onGameOver?.RaiseEvent();
+            }
          }
       }
    }
