@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace Prototype2 {
    public class PlayerController : MonoBehaviour {
-      private float horizontalInput;
-      private float leftBoundary = -15.0f;
-      private float rightBoundary = 15.0f;
-
       [SerializeField] private float speed;
       [SerializeField] private GameObject projectilePrefab;
+
+      // Keep player between -15m and 15m on X axis
+      private float bounds = 15.0f;
 
       // Start is called before the first frame update
       private void Start() {
@@ -18,18 +17,30 @@ namespace Prototype2 {
 
       // Update is called once per frame
       private void Update() {
-         // Keep player inbounds
-         if (transform.position.x < leftBoundary) {
-            transform.position = new Vector3(leftBoundary, transform.position.y, transform.position.z);
-         }
-         // Keep player inbounds
-         if (transform.position.x > rightBoundary) {
-            transform.position = new Vector3(rightBoundary, transform.position.y, transform.position.z);
-         }
+         KeepPlayerInbounds();
+         MovePlayerHorizontally(Input.GetAxis("Horizontal"));
+         FirePizza();
+      }
 
-         horizontalInput = Input.GetAxis("Horizontal");
+      /// <summary>
+      /// This method will look at the player's transform position and prevent them from going out of bounds.
+      /// </summary>
+      private void KeepPlayerInbounds() {
+         // Left boundary
+         if (transform.position.x < -bounds) {
+            transform.position = new Vector3(-bounds, transform.position.y, transform.position.z);
+         }
+         // Right boundary
+         if (transform.position.x > bounds) {
+            transform.position = new Vector3(bounds, transform.position.y, transform.position.z);
+         }
+      }
+
+      private void MovePlayerHorizontally(float horizontalInput) {
          transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+      }
 
+      private void FirePizza() {
          if (Input.GetKeyDown(KeyCode.Space)) {
             Instantiate(projectilePrefab, new Vector3(transform.position.x, 1, transform.position.z), projectilePrefab.transform.rotation);
          }

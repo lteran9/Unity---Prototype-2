@@ -14,6 +14,10 @@ namespace Prototype2 {
 
       }
 
+      /// <summary>
+      /// Detects collision between player and animals or pizza and animals.
+      /// </summary>
+      /// <param name="other"></param>
       private void OnTriggerEnter(Collider other) {
          if (tag == "Player") {
             if (other.CompareTag("Pizza")) {

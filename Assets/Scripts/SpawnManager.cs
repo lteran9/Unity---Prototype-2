@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Prototype2 {
    public class SpawnManager : MonoBehaviour {
+      [SerializeField] private GameObject[] animalPrefabs;
+
       private float spawnRangeX = 15;
       private float spawnPosZ = 20;
-
-      [SerializeField] private GameObject[] animalPrefabs;
 
       // Start is called before the first frame update
       private void Start() {
