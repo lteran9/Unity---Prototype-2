@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Prototype2 {
+   /// <summary>
+   /// Component to destroy enemies when they reach an out-of-bounds marker.
+   /// </summary>
    public class DestroyOutOfBounds : MonoBehaviour {
       private float topBound = 30.0f;
       private float lowBound = -10.0f;
 
-      // Start is called before the first frame update
-      private void Start() {
-
-      }
-
-      // Update is called once per frame
-      private void Update() {
+      //  Called every fixed frame-rate frame
+      private void FixedUpdate() {
          if (transform.position.z > topBound) {
             Destroy(gameObject);
          } else if (transform.position.z < lowBound) {

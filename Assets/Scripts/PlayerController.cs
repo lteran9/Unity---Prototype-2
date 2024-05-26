@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Prototype2.Events.ScriptableObjects;
 using UnityEngine;
 
 namespace Prototype2 {
    public class PlayerController : MonoBehaviour {
-      [SerializeField] private float speed;
-      [SerializeField] private GameObject projectilePrefab;
+      [SerializeField] private float speed = 0f;
+      [SerializeField] private GameObject projectilePrefab = default;
+      [Header("Listens on")]
+      [SerializeField] private VoidEventChannelSO _onStartGame = default;
 
+      private bool isGameRunning = false;
       // Keep player between -15m and 15m on X axis
       private float bounds = 15.0f;
 
@@ -17,10 +21,25 @@ namespace Prototype2 {
 
       // Update is called once per frame
       private void Update() {
-         KeepPlayerInbounds();
-         MovePlayerHorizontally(Input.GetAxis("Horizontal"));
-         FirePizza();
+         if (isGameRunning) {
+            KeepPlayerInbounds();
+            MovePlayerHorizontally(Input.GetAxis("Horizontal"));
+            FirePizza();
+         }
       }
+
+      private void OnEnable() {
+         _onStartGame?.Subscribe(StartGame);
+      }
+
+      private void OnDisable() {
+         _onStartGame?.Unsubscribe(StartGame);
+      }
+
+      private void StartGame() {
+         isGameRunning = true;
+      }
+
 
       /// <summary>
       /// This method will look at the player's transform position and prevent them from going out of bounds.

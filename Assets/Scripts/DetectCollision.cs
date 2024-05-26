@@ -7,6 +7,7 @@ namespace Prototype2 {
    public class DetectCollision : MonoBehaviour {
       [Header("Broadcasts on")]
       [SerializeField] private VoidEventChannelSO _onGameOver = default;
+      [SerializeField] private VoidEventChannelSO _onScoreIncrease = default;
 
       /// <summary>
       /// Detects collision between player and animals or pizza and animals.
@@ -17,9 +18,13 @@ namespace Prototype2 {
             return;
          } else {
             Destroy(gameObject);
-            Destroy(other.gameObject);
             if (other.CompareTag("Player")) {
+               other.gameObject.SetActive(false);
+               other.gameObject.transform.position = Vector3.zero;
                _onGameOver?.RaiseEvent();
+            } else {
+               Destroy(other.gameObject);
+               _onScoreIncrease?.RaiseEvent();
             }
          }
       }

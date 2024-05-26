@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onGameOver: {fileID: 11400000, guid: 82b57caf167ad4a249eddf9a6d233108, type: 2}
+  _onScoreIncrease: {fileID: 11400000, guid: 052f82f3d1d9947538a7684aee0d2b7f, type: 2}
 --- !u!1 &8575400572737967634
 GameObject:
   m_ObjectHideFlags: 0

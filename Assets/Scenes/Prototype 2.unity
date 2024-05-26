@@ -1147,6 +1147,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381707528}
   m_CullTransparentMesh: 1
+--- !u!1 &1442881478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 6f52b946693e54048af74f5cd6ba49f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1905655373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1516001060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1561,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5616300995951629074, guid: 6f52b946693e54048af74f5cd6ba49f8,
+        type: 3}
+      propertyPath: _onStartGame
+      value: 
+      objectReference: {fileID: 11400000, guid: 145a62c10594248c28c75a0af558004d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f52b946693e54048af74f5cd6ba49f8, type: 3}
 --- !u!1 &1972091913
@@ -1719,9 +1731,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8af6f04f6ed4740925181393572367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1442881478}
   _titleScreen: {fileID: 1381707528}
+  _gameScreen: {fileID: 957799994}
+  _scoreBox: {fileID: 1516001062}
   _onStartGame: {fileID: 11400000, guid: 145a62c10594248c28c75a0af558004d, type: 2}
   _onGameOver: {fileID: 11400000, guid: 82b57caf167ad4a249eddf9a6d233108, type: 2}
+  _scoreIncrease: {fileID: 11400000, guid: 052f82f3d1d9947538a7684aee0d2b7f, type: 2}
 --- !u!4 &1993580774
 Transform:
   m_ObjectHideFlags: 0
