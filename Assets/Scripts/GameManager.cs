@@ -47,6 +47,7 @@ namespace Prototype2 {
       }
 
       public void EndGame() {
+         score = 0;
          _gameScreen?.SetActive(false);
          _titleScreen?.SetActive(true);
       }
